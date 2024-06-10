@@ -1,13 +1,17 @@
 public class Race {
-    String winner = "";
-    int distance = 0;
+    int timeOfRace = 24;
+    String nameOfRacingCar;
+    int distanceOfRacingCar;
 
-    void calculateWinner(Automobile racingCar) {
-        int newDistance = racingCar.speed * 24;
+    Race(Automobile car) {
+        nameOfRacingCar = car.name;
+        distanceOfRacingCar = car.speed * timeOfRace;
+    }
 
-        if (newDistance > distance) {
-            winner = racingCar.name;
-            distance = newDistance;
+    void calculateWinner(Winner newWinner) {
+        if (distanceOfRacingCar > newWinner.distance) {
+            newWinner.name = nameOfRacingCar;
+            newWinner.distance = distanceOfRacingCar;
         }
     }
 }
