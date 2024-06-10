@@ -12,17 +12,21 @@ public class Main {
         for (int i = 0; i < numberOfCars; i++) {
             // запрос названия машины
             System.out.println("Введите название машины №" + (i + 1) +":");
-            String name = scanner.next();
+            String name = scanner.nextLine();
 
             // запрос скорости
             System.out.println("Введите скорость машины №" + (i + 1) +":");
             int speed = scanner.nextInt();
+            // для сброса новой строки после scanner.nextInt()
+            scanner.nextLine();
 
             // проверка скорости
             while (!(speed > 0 && speed <= maxSpeedOfCar)) {
                 System.out.println("Неправильная скорость");
                 System.out.println("Введите скорость машины №" + (i + 1) +":");
                 speed = scanner.nextInt();
+                // для сброса новой строки после scanner.nextInt()
+                scanner.nextLine();
             }
 
             // создание объекта типа Automobile и передача данных
