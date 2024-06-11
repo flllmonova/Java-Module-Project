@@ -11,31 +11,36 @@ public class Main {
         // цикл для сбора данных о машинах
         for (int i = 0; i < numberOfCars; i++) {
             // запрос названия машины
-            System.out.println("Введите название машины №" + (i + 1) +":");
+            System.out.println("Введите название машины №" + (i + 1) + ":");
             String name = scanner.nextLine();
 
             // запрос скорости
-            System.out.println("Введите скорость машины №" + (i + 1) +":");
-            int speed = scanner.nextInt();
-            // для сброса новой строки после scanner.nextInt()
-            scanner.nextLine();
+            int speed;
+            while (true) {
+                System.out.println("Введите скорость для машины №" + (i + 1) + ":");
+                Scanner scannerForInt = new Scanner(System.in);
 
-            // проверка скорости
-            while (!(speed > 0 && speed <= maxSpeedOfCar)) {
-                System.out.println("Неправильная скорость");
-                System.out.println("Введите скорость машины №" + (i + 1) +":");
-                speed = scanner.nextInt();
-                // для сброса новой строки после scanner.nextInt()
-                scanner.nextLine();
+                if (scannerForInt.hasNextInt()) {
+                    speed = scannerForInt.nextInt();
+
+                    if (speed > 0 && speed <= maxSpeedOfCar) {
+                        break;
+                    }
+                }
+
+                System.out.println("Скорость введена неверно");
             }
 
-            // создание объекта типа Automobile и передача данных
+            // передача данных и создание машины
             Automobile car = new Automobile(name, speed);
-
-            // расчет победителя
+            System.out.println("Машина " + name + " со скоростью "+ speed + " км/ч успешно зарегистрирована!");
+            // превращение в гоночную машину
             Race racingCar = new Race(car);
+            // расчет победителя
             racingCar.calculateWinner(winner);
         }
+
+        // выведение результата
         System.out.println("Самая быстрая машина: " + winner.name);
         scanner.close();
     }
